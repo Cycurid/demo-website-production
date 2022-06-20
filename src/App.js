@@ -27,11 +27,13 @@ function App() {
   function onSuccess(data, token) {
     setUsername(data.uuid);
     setToken(token);
+    console.log(username);
   }
 
   useEffect(() => {
     console.log("token to log out with: ", token);
-  }, [token]);
+    console.log(username);
+  }, [token, username]);
 
   function onFailure(data) {
     console.log(data);

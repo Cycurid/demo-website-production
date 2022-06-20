@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { ReactComponent as Logo } from "../Assets/imme icon-02.svg";
 
 export default class SignUp extends Component {
   render() {
@@ -43,10 +44,22 @@ export default class SignUp extends Component {
             Sign Up
           </button>
         </div>
+        <hr className="my-4" />
+        <div className="d-grid">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            style={{ backgroundColor: "orange", borderColor: "orange" }}
+          >
+            {" "}
+            <Logo style={{ width: "20px", marginRight: "20px" }} />
+            Sign Up With Imme
+          </button>
+        </div>
         <p className="forgot-password text-right">
           Already registered <a href="/sign-in">sign in?</a>
         </p>
       </form>
-    )
+    );
   }
 }

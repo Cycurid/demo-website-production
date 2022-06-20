@@ -40,7 +40,8 @@ function App() {
     console.log(data);
   }
 
-  async function signIn() {
+  async function signIn(e) {
+    e.preventDefault();
     immeOauth(
       {
         action: "login",
@@ -116,8 +117,18 @@ function App() {
         <div className="auth-wrapper">
           <div className="auth-inner">
             <Routes>
-              <Route exact path="/" element={<Login signIn={() => signIn} />} />
               <Route
+                exact
+                path="/"
+                element={
+                  <Login
+                    signIn={signIn}
+                    setUsername={setUsername}
+                    setToken={setToken}
+                  />
+                }
+              />
+              {/* <Route
                 path="/sign-in"
                 element={
                   !username ? (
@@ -140,7 +151,7 @@ function App() {
               <Route
                 path="/success"
                 element={<Success logout={() => logout} userName={username} />}
-              />
+              /> */}
             </Routes>
           </div>
         </div>

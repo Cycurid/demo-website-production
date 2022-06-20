@@ -108,17 +108,7 @@ function App() {
         <div className="auth-wrapper">
           <div className="auth-inner">
             <Routes>
-              <Route
-                exact
-                path="/"
-                element={
-                  !username ? (
-                    <Login signIn={() => signIn} />
-                  ) : (
-                    <Navigate replace to="/success" />
-                  )
-                }
-              />
+              <Route exact path="/" element={<Login signIn={() => signIn} />} />
               <Route
                 path="/sign-in"
                 element={
@@ -141,13 +131,7 @@ function App() {
               />
               <Route
                 path="/success"
-                element={
-                  username ? (
-                    <Success logout={() => logout} userName={username} />
-                  ) : (
-                    <Navigate replace to="/" />
-                  )
-                }
+                element={<Success logout={() => logout} userName={username} />}
               />
             </Routes>
           </div>

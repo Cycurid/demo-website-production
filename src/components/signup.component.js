@@ -50,6 +50,7 @@ export default class SignUp extends Component {
             type="submit"
             className="btn btn-primary"
             style={{ backgroundColor: "orange", borderColor: "orange" }}
+            onClick={this.props.signUp}
           >
             {" "}
             <Logo style={{ width: "20px", marginRight: "20px" }} />

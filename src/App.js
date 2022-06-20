@@ -28,6 +28,7 @@ function App() {
     setUsername(data.uuid);
     setToken(token);
     console.log(username);
+    console.log(data);
   }
 
   useEffect(() => {

@@ -19,9 +19,9 @@ function App() {
   const [load, setLoad] = useState();
   const [token, setToken] = useState();
 
-  const redirect_url = "https://im-test-site-with-node.vercel.app";
-  const client_secret = "je4Scfiug5tTeHIrjtchvEYPEvNf229qHGYchk7vuQVWLtu7";
-  const client_id = "jpmxxTHmWSCqtxzKcxJwBj3E"; // premium
+  const redirect_url = "https://imme-demo-login.vercel.app/";
+  const client_secret = "j28E9IOkE3SJz44hYqBeXd6Q";
+  const client_id = "farHtpWZH39IVDLqsWLIK43X55gTXnAwADjNc4AKubCQtSTc"; // premium
   const scope = "uuid";
 
   function onSuccess(data, token) {

@@ -121,14 +121,18 @@ function App() {
                 exact
                 path="/"
                 element={
-                  <Login
-                    signIn={signIn}
-                    setUsername={setUsername}
-                    setToken={setToken}
-                  />
+                  !username ? (
+                    <Login
+                      signIn={signIn}
+                      setUsername={setUsername}
+                      setToken={setToken}
+                    />
+                  ) : (
+                    <Navigate replace to="/success" />
+                  )
                 }
               />
-              {/* <Route
+              <Route
                 path="/sign-in"
                 element={
                   !username ? (
@@ -151,7 +155,7 @@ function App() {
               <Route
                 path="/success"
                 element={<Success logout={() => logout} userName={username} />}
-              /> */}
+              />
             </Routes>
           </div>
         </div>

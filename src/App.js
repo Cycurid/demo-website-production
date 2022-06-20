@@ -27,8 +27,6 @@ function App() {
   function onSuccess(data, token) {
     setUsername(data.uuid);
     setToken(token);
-    console.log("username", username);
-    console.log("data", data);
   }
 
   useEffect(() => {
@@ -68,7 +66,7 @@ function App() {
     );
   }
   function logout() {
-    // immeLogout(token.access_token, client_id, client_secret);
+    immeLogout(token.access_token, client_id, client_secret);
     setUsername(null);
     console.log(username);
   }
@@ -104,14 +102,6 @@ function App() {
               </div>
             )}
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{ backgroundColor: "orange", borderColor: "orange" }}
-            onClick={signIn}
-          >
-            Sign In With Imme
-          </button>
         </nav>
 
         <div className="auth-wrapper">
@@ -154,7 +144,13 @@ function App() {
               />
               <Route
                 path="/success"
-                element={<Success logout={() => logout} userName={username} />}
+                element={
+                  username ? (
+                    <Success logout={() => logout} userName={username} />
+                  ) : (
+                    <Navigate replace to="/" />
+                  )
+                }
               />
             </Routes>
           </div>

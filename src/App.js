@@ -52,7 +52,8 @@ function App() {
       onFailure
     );
   }
-  async function signUp() {
+  async function signUp(e) {
+    e.preventDefault();
     immeOauth(
       {
         action: "register",

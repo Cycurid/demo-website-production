@@ -20,8 +20,8 @@ function App() {
   const [token, setToken] = useState();
 
   const redirect_url = "https://imme-demo-login.vercel.app/";
-  const client_secret = "j28E9IOkE3SJz44hYqBeXd6Q";
-  const client_id = "farHtpWZH39IVDLqsWLIK43X55gTXnAwADjNc4AKubCQtSTc"; // premium
+  const client_secret = "farHtpWZH39IVDLqsWLIK43X55gTXnAwADjNc4AKubCQtSTc";
+  const client_id = "j28E9IOkE3SJz44hYqBeXd6Q"; // premium
   const scope = "uuid";
 
   function onSuccess(data, token) {

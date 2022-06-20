@@ -103,9 +103,6 @@ function App() {
               </div>
             )}
           </div>
-        </nav>
-
-        <div className="auth-wrapper">
           <button
             type="submit"
             className="btn btn-primary"
@@ -114,6 +111,9 @@ function App() {
           >
             Sign In With Imme
           </button>
+        </nav>
+
+        <div className="auth-wrapper">
           <div className="auth-inner">
             <Routes>
               <Route exact path="/" element={<Login signIn={() => signIn} />} />

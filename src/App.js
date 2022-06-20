@@ -19,7 +19,7 @@ function App() {
   const [load, setLoad] = useState();
   const [token, setToken] = useState();
 
-  const redirect_url = "https://imme-demo-login.vercel.app/";
+  const redirect_url = "https://imme-demo-login.vercel.app";
   const client_secret = "farHtpWZH39IVDLqsWLIK43X55gTXnAwADjNc4AKubCQtSTc";
   const client_id = "j28E9IOkE3SJz44hYqBeXd6Q"; // premium
   const scope = "uuid";
@@ -27,8 +27,8 @@ function App() {
   function onSuccess(data, token) {
     setUsername(data.uuid);
     setToken(token);
-    console.log(username);
-    console.log(data);
+    console.log("username", username);
+    console.log("data", data);
   }
 
   useEffect(() => {

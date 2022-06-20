@@ -127,7 +127,7 @@ function App() {
                 path="/sign-in"
                 element={
                   !username ? (
-                    <Login signIn={() => signIn} />
+                    <Login signIn={signIn} />
                   ) : (
                     <Navigate replace to="/success" />
                   )
@@ -137,7 +137,7 @@ function App() {
                 path="/sign-up"
                 element={
                   !username ? (
-                    <SignUp signUp={() => signUp} />
+                    <SignUp signUp={signUp} />
                   ) : (
                     <Navigate replace to="/success" />
                   )

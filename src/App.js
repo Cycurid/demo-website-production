@@ -106,6 +106,14 @@ function App() {
         </nav>
 
         <div className="auth-wrapper">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            style={{ backgroundColor: "orange", borderColor: "orange" }}
+            onClick={signIn}
+          >
+            Sign In With Imme
+          </button>
           <div className="auth-inner">
             <Routes>
               <Route exact path="/" element={<Login signIn={() => signIn} />} />

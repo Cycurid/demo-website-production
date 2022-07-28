@@ -14,25 +14,23 @@ import SignUp from "./components/signup.component";
 import Success from "./components/success.component";
 
 function App() {
-  const [failed, setFailed] = useState();
   const [username, setUsername] = useState();
   const [load, setLoad] = useState();
   const [token, setToken] = useState();
-
-  const redirect_url = "https://imme-demo-login.vercel.app";
-  const client_secret = "farHtpWZH39IVDLqsWLIK43X55gTXnAwADjNc4AKubCQtSTc";
-  const client_id = "j28E9IOkE3SJz44hYqBeXd6Q"; // premium
-  const scope = "uuid";
+  const config = {
+    redirect_url: process.env.REACT_APP_REDIRECT_URL,
+    client_secret: process.env.REACT_APP_CLIENT_SECRET,
+    client_id: process.env.REACT_APP_CLIENT_ID,
+    scope: "uuid",
+  };
 
   function onSuccess(data, token) {
     setUsername(data.uuid);
     setToken(token);
+    console.log("Data requested from scope: ", data);
+    console.log("UserName: ", data.uuid);
+    console.log("Token: ", token);
   }
-
-  useEffect(() => {
-    console.log("token to log out with: ", token);
-    console.log(username);
-  }, [token, username]);
 
   function onFailure(data) {
     console.log(data);
@@ -40,36 +38,15 @@ function App() {
 
   async function signIn(e) {
     e.preventDefault();
-    immeOauth(
-      {
-        action: "login",
-        client_id,
-        redirect_url,
-        scope,
-        client_secret,
-      },
-      onSuccess,
-      onFailure
-    );
+    immeOauth({ ...config, action: "login" }, onSuccess, onFailure);
   }
   async function signUp(e) {
     e.preventDefault();
-    immeOauth(
-      {
-        action: "register",
-        client_id,
-        redirect_url,
-        scope,
-        client_secret,
-      },
-      onSuccess,
-      onFailure
-    );
+    immeOauth(config("register"), onSuccess, onFailure);
   }
   function logout() {
-    immeLogout(token.access_token, client_id, client_secret);
+    immeLogout(token.access_token, config.client_id, config.client_secret);
     setUsername(null);
-    console.log(username);
   }
 
   useEffect(() => {

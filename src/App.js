@@ -18,7 +18,7 @@ function App() {
   const [load, setLoad] = useState();
   const [token, setToken] = useState();
   const config = {
-    redirect_url: process.env.REACT_APP_REDIRECT_URL,
+    origin_url: process.env.REACT_APP_ORIGIN_URL,
     client_secret: process.env.REACT_APP_CLIENT_SECRET,
     client_id: process.env.REACT_APP_CLIENT_ID,
     scope: "uuid",

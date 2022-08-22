@@ -15,20 +15,30 @@ import Success from "./components/success.component";
 
 function App() {
   const [username, setUsername] = useState();
+  const [userData, setUserData] = useState();
   const [load, setLoad] = useState();
   const [token, setToken] = useState();
   const config = {
     origin_url: process.env.REACT_APP_ORIGIN_URL,
     client_secret: process.env.REACT_APP_CLIENT_SECRET,
     client_id: process.env.REACT_APP_CLIENT_ID,
-    scope: "uuid",
+    scope: [
+      "reference_uuid",
+      "email",
+      "first_name",
+      "address",
+      "city",
+      "passport_number",
+    ],
+    entity_name: "CycurID Demo App",
   };
 
   function onSuccess(data, token) {
-    setUsername(data.uuid);
+    setUsername(data.reference_uuid);
+    setUserData(data);
     setToken(token);
     console.log("Data requested from scope: ", data);
-    console.log("UserName: ", data.uuid);
+    console.log("UserName: ", data.reference_uuid);
     console.log("Token: ", token);
   }
 
@@ -42,7 +52,7 @@ function App() {
   }
   async function signUp(e) {
     e.preventDefault();
-    immeOauth(config("register"), onSuccess, onFailure);
+    immeOauth({ ...config, action: "login" }, onSuccess, onFailure);
   }
   function logout() {
     immeLogout(token.access_token, config.client_id, config.client_secret);
@@ -124,7 +134,7 @@ function App() {
                 path="/success"
                 element={
                   username ? (
-                    <Success logout={() => logout} userName={username} />
+                    <Success logout={() => logout} userData={userData} />
                   ) : (
                     <Navigate replace to="/" />
                   )

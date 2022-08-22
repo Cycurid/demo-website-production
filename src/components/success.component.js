@@ -6,7 +6,13 @@ export default class Success extends Component {
     return (
       <>
         <h3>Successfully Logged In</h3>
-        <h4 className="text-center">UUID: {this.props.userName}</h4>
+        {Object.keys(this.props.userData).map((obj, i) => {
+          return (
+            <h4 className="text-center">
+              {obj}: {this.props.userData[obj]}
+            </h4>
+          );
+        })}
         <div className="d-grid">
           <button
             type="submit"

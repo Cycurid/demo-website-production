@@ -57,6 +57,19 @@ export default class Login extends Component {
               <Logo style={{ width: "20px", marginRight: "20px" }} />
               Sign In With Imme
             </button>
+            <button
+              className="btn btn-primary"
+              style={{
+                backgroundColor: "purple",
+                borderColor: "purple",
+                marginTop: "20px",
+              }}
+              onClick={this.props.verify}
+            >
+              {" "}
+              <Logo style={{ width: "20px", marginRight: "20px" }} />
+              Verify With Imme
+            </button>
           </div>
         </form>
       </>

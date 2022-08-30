@@ -22,15 +22,13 @@ function App() {
     origin_url: process.env.REACT_APP_ORIGIN_URL,
     client_secret: process.env.REACT_APP_CLIENT_SECRET,
     client_id: process.env.REACT_APP_CLIENT_ID,
-    scope: [
-      "reference_uuid",
-      "email",
-      "first_name",
-      "address",
-      "city",
-      "passport_number",
-    ],
-    entity_name: "CycurID Demo App",
+    scope: ["reference_uuid", "email", "phone"],
+    entity_name: "CycurID Demo Test nine App",
+    verification: {
+      first_name: "Jordan",
+      passport_id: "8745452",
+      email: "jordan@example.com",
+    },
   };
 
   function onSuccess(data, token) {
@@ -53,6 +51,10 @@ function App() {
   async function signUp(e) {
     e.preventDefault();
     immeOauth({ ...config, action: "login" }, onSuccess, onFailure);
+  }
+  async function verify(e) {
+    e.preventDefault();
+    immeOauth({ ...config, action: "verification" }, onSuccess, onFailure);
   }
   function logout() {
     immeLogout(token.access_token, config.client_id, config.client_secret);
@@ -102,6 +104,7 @@ function App() {
                   !username ? (
                     <Login
                       signIn={signIn}
+                      verify={verify}
                       setUsername={setUsername}
                       setToken={setToken}
                     />
@@ -114,7 +117,7 @@ function App() {
                 path="/sign-in"
                 element={
                   !username ? (
-                    <Login signIn={signIn} />
+                    <Login signIn={signIn} verify={verify} />
                   ) : (
                     <Navigate replace to="/success" />
                   )
@@ -130,6 +133,7 @@ function App() {
                   )
                 }
               />
+
               <Route
                 path="/success"
                 element={

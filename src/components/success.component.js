@@ -6,10 +6,10 @@ export default class Success extends Component {
     return (
       <>
         <h3>Successfully Logged In</h3>
-        {Object.keys(this.props.userData).map((obj, i) => {
+        {Object.keys(this.props.userData.user_data).map((obj, i) => {
           return (
             <h4 className="text-center">
-              {obj}: {this.props.userData[obj]}
+              {obj}: {this.props.userData.user_data[obj]}
             </h4>
           );
         })}

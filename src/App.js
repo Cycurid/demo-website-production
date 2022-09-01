@@ -25,17 +25,21 @@ function App() {
     scope: [
       "reference_uuid",
       "email",
+      "phone",
       "first_name",
+      "last_name",
+      "middle_name",
+      "dob",
       "address",
       "city",
-      "passport_number",
+      "zip",
     ],
-    entity_name: "CycurID Demo App",
+    entity_name: "CycurID Demo App 5",
   };
 
   function onSuccess(data, token) {
     setUsername(data.reference_uuid);
-    setUserData(data);
+    setUserData(data.user_data);
     setToken(token);
     console.log("Data requested from scope: ", data);
     console.log("UserName: ", data.reference_uuid);

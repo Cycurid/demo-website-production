@@ -34,7 +34,7 @@ function App() {
       "city",
       "zip",
     ],
-    entity_name: "CycurID Demo App 5",
+    entity_name: "Imme Test Entity",
   };
 
   function onSuccess(data, token) {

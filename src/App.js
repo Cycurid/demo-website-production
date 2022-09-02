@@ -42,8 +42,6 @@ function App() {
     setUserData(data.user_data);
     setToken(token);
     console.log("Data requested from scope: ", data);
-    console.log("UserName: ", data.reference_uuid);
-    console.log("Token: ", token);
   }
 
   function onFailure(data) {

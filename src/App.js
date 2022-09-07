@@ -22,22 +22,26 @@ function App() {
     origin_url: process.env.REACT_APP_ORIGIN_URL,
     client_secret: process.env.REACT_APP_CLIENT_SECRET,
     client_id: process.env.REACT_APP_CLIENT_ID,
-    scope: ["reference_uuid", "email", "phone"],
-    entity_name: "CycurID Demo Test nine App",
-    verification: {
-      first_name: "Jordan",
-      passport_id: "8745452",
-      email: "jordan@example.com",
-    },
+    scope: [
+      "reference_uuid",
+      "email",
+      "phone",
+      "first_name",
+      "last_name",
+      "middle_name",
+      "dob",
+      "address",
+      "city",
+      "zip",
+    ],
+    entity_name: "Imme Test Entity",
   };
 
   function onSuccess(data, token) {
     setUsername(data.reference_uuid);
-    setUserData(data);
+    setUserData(data.user_data);
     setToken(token);
     console.log("Data requested from scope: ", data);
-    console.log("UserName: ", data.reference_uuid);
-    console.log("Token: ", token);
   }
 
   function onFailure(data) {

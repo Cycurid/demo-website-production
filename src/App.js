@@ -9,6 +9,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { immeOauth, immeLogout } from "cycurid-widget-js";
+import { immeVerification } from "cycurid-verification-js";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
 import Success from "./components/success.component";
@@ -24,17 +25,41 @@ function App() {
     client_id: process.env.REACT_APP_CLIENT_ID,
     scope: [
       "reference_uuid",
-      "email",
-      "phone",
-      "first_name",
-      "last_name",
-      "middle_name",
-      "dob",
-      "address",
-      "city",
-      "zip",
+      // "email",
+      // "phone",
+      // "first_name",
+      // "last_name",
+      // "middle_name",
+      // "dob",
+      // "address",
+      // "city",
+      // "zip",
     ],
     entity_name: "Imme Test Entity",
+  };
+
+  const myUserData = {
+    verification: {
+      callback: "http://localhost:3001",
+      person: {
+        first_name: "Jordan",
+        last_name: "MEHRTASH",
+      },
+      documents: {
+        type: "driver_license",
+        //driver_license
+        //passport
+        number: "HP458183",
+        country: "can",
+      },
+      internal_reference: "dsafsdfasdfasdfasdf",
+    },
+  };
+
+  const verificationConfig = {
+    client_api_key: process.env.REACT_APP_IMME_API_KEY,
+    client_api_secret: process.env.REACT_APP_IMME_API_SECRET,
+    verifiable_data: myUserData,
   };
 
   function onSuccess(data, token) {
@@ -58,7 +83,7 @@ function App() {
   }
   async function verify(e) {
     e.preventDefault();
-    immeOauth({ ...config, action: "verification" }, onSuccess, onFailure);
+    immeVerification(verificationConfig, onSuccess, onFailure);
   }
   function logout() {
     immeLogout(token.access_token, config.client_id, config.client_secret);

@@ -27,7 +27,7 @@ function App() {
       "reference_uuid",
       // "email",
       // "phone",
-      // "first_name",
+      "first_name",
       // "last_name",
       // "middle_name",
       // "dob",
@@ -40,7 +40,8 @@ function App() {
 
   const myUserData = {
     verification: {
-      callback: "http://localhost:3001",
+      //callback: "https://e83c-209-121-124-51.ngrok.io",
+      callback: "https://google.ca",
       person: {
         first_name: "Jordan",
         last_name: "MEHRTASH",

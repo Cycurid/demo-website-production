@@ -48,7 +48,6 @@ function App() {
       handleGoBack()
     }, [])
 
-  // const [verficationData, setVerificationData] = useState();
   let verificationData = [];
   const config = {
     origin_url: process.env.REACT_APP_ORIGIN_URL,
@@ -72,7 +71,7 @@ function App() {
   const myUserData = {
     verification: {
       //callback: "https://e83c-209-121-124-51.ngrok.io",
-      callback: "https://c729d97b6387.ngrok.io/verification",
+      callback: `${process.env.REACT_APP_SERVER}/verification`,
       person: {
         first_name: firstName,
         last_name: lastName,
@@ -93,10 +92,6 @@ function App() {
     client_api_secret: process.env.REACT_APP_IMME_API_SECRET,
     verifiable_data: myUserData,
   };
-
-// useEffect(() => {
-//   console.log('firstname:' , firstName)
-// },[firstName])
 
   function onSuccess(data, token) {
     setUsername(data.reference_uuid);
@@ -179,7 +174,6 @@ function App() {
                 element={
                   Object.keys(verifiedData).length === 0 ? (
                     <>
-                      
                       <Login
                       setFirstName={setFirstName}
                       firstName={firstName}
@@ -199,39 +193,17 @@ function App() {
                       verificationData={verificationData}
                       />
                     </>
-     
                   ) : (
                     // <Navigate replace to="/success" />
                     <>
-                     
-                      {/* {Object.keys(verifiedData).map((obj, i) => {
-                        return (
-                          <h4 className="text-center">
-                            {obj}: {verifiedData[obj]}
-                          </h4>
-                        );
-                      })} */}
-                      {/* {verifiedData} */}
-                      
-                        {/* console.log('This is the verified data: ', verifiedData.verification.documents.)
-                        Object.keys(verifiedData.verification.documents).map(key => 
-                          <> */}
-                            <h3>Response data: </h3>
-                            <div style={{display: "flex"}}><h4>First name: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.person.first_name)}</p></div>
-                            <div style={{display: "flex"}}><h4>Last name: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.person.last_name)}</p></div>
-
-                            <div style={{display: "flex"}}><h4>Document type: </h4><p style={{marginLeft: "10px"}}>{verifiedData.verification.documents.type}</p></div>
-                            <div style={{display: "flex"}}><h4>Doc number: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.documents.number)}</p></div>
-                            <div style={{display: "flex"}}><h4>Doc country: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.documents.country)}</p></div>
-                            {/* <h4 value={key}>{key.number}</h4>
-                            <h4 value={key}>{key.country}</h4>
-                         </> */}
-
-                      
-                      
+                      <h3>Response data: </h3>
+                      <div style={{display: "flex"}}><h4>First name: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.person.first_name)}</p></div>
+                      <div style={{display: "flex"}}><h4>Last name: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.person.last_name)}</p></div>
+                      <div style={{display: "flex"}}><h4>Document type: </h4><p style={{marginLeft: "10px"}}>{verifiedData.verification.documents.type}</p></div>
+                      <div style={{display: "flex"}}><h4>Doc number: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.documents.number)}</p></div>
+                      <div style={{display: "flex"}}><h4>Doc country: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.documents.country)}</p></div>
                       <button className="btn btn-primary" onClick={handleGoBack}>Go back</button>
                     </>
-                  
                   )
                 }
               />
@@ -241,10 +213,8 @@ function App() {
                   !username ? (
                     <>
                       <Login signIn={signIn} 
-                      // verify={verify} 
                       />
                     </>
-
                   ) : (
                     <Navigate replace to="/success" />
                   )
@@ -260,7 +230,6 @@ function App() {
                   )
                 }
               />
-
               <Route
                 path="/success"
                 element={

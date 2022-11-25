@@ -9,7 +9,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { immeOauth, immeLogout } from "cycurid-widget-js";
-import { immeVerification } from "cycurid-verification-js";
+import { immeVerification } from "cycurid-verification-js-staging";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
 import Success from "./components/success.component";

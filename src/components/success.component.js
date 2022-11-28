@@ -6,7 +6,7 @@ export default class Success extends Component {
     return (
       <>
         <h3>Successfully Logged In</h3>
-        {Object.keys(this.props.userData.user_data).map((obj, i) => {
+        {/* {Object.keys(this.props.userData.user_data).map((obj, i) => {
           return (
             <h4 className="text-center" style={{ color: 'black'}}>
               {obj}: {this.props.userData.user_data[obj]}
@@ -24,7 +24,7 @@ export default class Success extends Component {
             <Logo style={{ width: "20px", marginRight: "20px" }} />
             Sign Out With Imme
           </button>
-        </div>
+        </div> */}
       </>
     );
   }

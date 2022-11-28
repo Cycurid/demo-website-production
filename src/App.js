@@ -172,6 +172,7 @@ function App() {
                 exact
                 path="/"
                 element={
+                  !username?
                   Object.keys(verifiedData).length === 0 ? (
                     <>
                       <Login
@@ -204,7 +205,7 @@ function App() {
                       <div style={{display: "flex"}}><h4>Doc country: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.documents.country)}</p></div>
                       <button className="btn btn-primary" onClick={handleGoBack}>Go back</button>
                     </>
-                  )
+                  ):<Navigate replace to="/success" />
                 }
               />
               <Route

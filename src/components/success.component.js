@@ -11,7 +11,7 @@ export default class Success extends Component {
         {Object.keys(this.props.userData).map((obj, i) => {
           return (
             <h4 className="text-center" style={{ color: 'black'}}>
-              {obj}: {this.props.userData.user_data[obj]}
+              {obj}: {this.props.userData[obj]}
             </h4>
           );
         })}

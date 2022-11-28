@@ -8,7 +8,7 @@ export default class Success extends Component {
         <h3>Successfully Logged In</h3>
         {Object.keys(this.props.userData.user_data).map((obj, i) => {
           return (
-            <h4 className="text-center">
+            <h4 className="text-center" style={{ color: 'black'}}>
               {obj}: {this.props.userData.user_data[obj]}
             </h4>
           );

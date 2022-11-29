@@ -38,7 +38,7 @@ function App() {
         { },
       )
       setVerifiedData(response.data);
-    }, 1000 * 10);
+    }, 1000 * 5);
 
     useEffect(() => {
       console.log(verifiedData);

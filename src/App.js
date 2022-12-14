@@ -15,7 +15,7 @@ import SignUp from "./components/signup.component";
 import Success from "./components/success.component";
 import axios from "axios";
 
-import {useInterval} from './hooks/useInterval';
+import { useInterval } from "./hooks/useInterval";
 
 function App() {
   const [username, setUsername] = useState();
@@ -23,30 +23,29 @@ function App() {
   const [load, setLoad] = useState();
   const [token, setToken] = useState();
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [documentType, setDocumentType] = useState('');
-  const [documentNumber, setDocumentNumber] = useState('');
-  const [documentCountry, setDocumentCountry] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [documentType, setDocumentType] = useState("");
+  const [documentNumber, setDocumentNumber] = useState("");
+  const [documentCountry, setDocumentCountry] = useState("");
 
-  const [verifiedData, setVerifiedData] = useState({}); 
+  const [verifiedData, setVerifiedData] = useState({});
 
- 
-    useInterval(async () => {
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER}/verification/status`,
-        { },
-      )
-      setVerifiedData(response.data);
-    }, 1000 * 5);
+  useInterval(async () => {
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER}/verification/status`,
+      {}
+    );
+    setVerifiedData(response.data);
+  }, 1000 * 5);
 
-    useEffect(() => {
-      console.log(verifiedData);
-    },[verifiedData]);
+  useEffect(() => {
+    console.log(verifiedData);
+  }, [verifiedData]);
 
-    useEffect(() => {
-      handleGoBack()
-    }, [])
+  useEffect(() => {
+    handleGoBack();
+  }, []);
 
   let verificationData = [];
   const config = {
@@ -109,14 +108,13 @@ function App() {
     immeOauth({ ...config, action: "login" }, onSuccess, onFailure);
   }
   async function signUp(e) {
-
     immeOauth({ ...config, action: "login" }, onSuccess, onFailure);
   }
   async function verify(e) {
-    console.log('verificationConfig',verificationConfig)
+    console.log("verificationConfig", verificationConfig);
     e.preventDefault();
     immeVerification(verificationConfig, onSuccess, onFailure);
-    console.log('verificationData',verificationData)
+    console.log("verificationData", verificationData);
   }
   function logout() {
     immeLogout(token.access_token, config.client_id, config.client_secret);
@@ -126,9 +124,9 @@ function App() {
   async function handleGoBack() {
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER}/verification/reset`,
-      { },
-    )
-    console.log('response is:', response);
+      {}
+    );
+    console.log("response is:", response);
     setVerifiedData(response.data);
   }
 
@@ -148,7 +146,7 @@ function App() {
                 className="collapse navbar-collapse"
                 id="navbarTogglerDemo02"
               >
-                <ul className="navbar-nav ml-auto">
+                {/* <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
                     <Link className="nav-link" to={"/sign-in"}>
                       Login
@@ -159,7 +157,7 @@ function App() {
                       Sign up
                     </Link>
                   </li>
-                </ul>
+                </ul> */}
               </div>
             )}
           </div>
@@ -172,40 +170,80 @@ function App() {
                 exact
                 path="/"
                 element={
-                  !username?
-                  Object.keys(verifiedData).length === 0 ? (
-                    <>
-                      <Login
-                      setFirstName={setFirstName}
-                      firstName={firstName}
-                      setLastName={setLastName}
-                      lastName={lastName}
-                      setDocumentType={setDocumentType}
-                      documentType={documentType}
-                      setDocumentNumber={setDocumentNumber}
-                      documentNumber={documentNumber}
-                      setDocumentCountry={setDocumentCountry}
-                      documentCountry={documentCountry}
-
-                      signIn={signIn}
-                      verify={verify}
-                      setUsername={setUsername}
-                      setToken={setToken}
-                      verificationData={verificationData}
-                      />
-                    </>
+                  !username ? (
+                    Object.keys(verifiedData).length === 0 ? (
+                      <>
+                        <Login
+                          setFirstName={setFirstName}
+                          firstName={firstName}
+                          setLastName={setLastName}
+                          lastName={lastName}
+                          setDocumentType={setDocumentType}
+                          documentType={documentType}
+                          setDocumentNumber={setDocumentNumber}
+                          documentNumber={documentNumber}
+                          setDocumentCountry={setDocumentCountry}
+                          documentCountry={documentCountry}
+                          signIn={signIn}
+                          verify={verify}
+                          setUsername={setUsername}
+                          setToken={setToken}
+                          verificationData={verificationData}
+                        />
+                      </>
+                    ) : (
+                      // <Navigate replace to="/success" />
+                      <>
+                        <h3>Response data: </h3>
+                        <div style={{ display: "flex" }}>
+                          <h4>First name: </h4>
+                          <p style={{ marginLeft: "10px" }}>
+                            {JSON.stringify(
+                              verifiedData.verification.person.first_name
+                            )}
+                          </p>
+                        </div>
+                        <div style={{ display: "flex" }}>
+                          <h4>Last name: </h4>
+                          <p style={{ marginLeft: "10px" }}>
+                            {JSON.stringify(
+                              verifiedData.verification.person.last_name
+                            )}
+                          </p>
+                        </div>
+                        <div style={{ display: "flex" }}>
+                          <h4>Document type: </h4>
+                          <p style={{ marginLeft: "10px" }}>
+                            {verifiedData.verification.documents.type}
+                          </p>
+                        </div>
+                        <div style={{ display: "flex" }}>
+                          <h4>Doc number: </h4>
+                          <p style={{ marginLeft: "10px" }}>
+                            {JSON.stringify(
+                              verifiedData.verification.documents.number
+                            )}
+                          </p>
+                        </div>
+                        <div style={{ display: "flex" }}>
+                          <h4>Doc country: </h4>
+                          <p style={{ marginLeft: "10px" }}>
+                            {JSON.stringify(
+                              verifiedData.verification.documents.country
+                            )}
+                          </p>
+                        </div>
+                        <button
+                          className="btn btn-primary"
+                          onClick={handleGoBack}
+                        >
+                          Go back
+                        </button>
+                      </>
+                    )
                   ) : (
-                    // <Navigate replace to="/success" />
-                    <>
-                      <h3>Response data: </h3>
-                      <div style={{display: "flex"}}><h4>First name: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.person.first_name)}</p></div>
-                      <div style={{display: "flex"}}><h4>Last name: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.person.last_name)}</p></div>
-                      <div style={{display: "flex"}}><h4>Document type: </h4><p style={{marginLeft: "10px"}}>{verifiedData.verification.documents.type}</p></div>
-                      <div style={{display: "flex"}}><h4>Doc number: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.documents.number)}</p></div>
-                      <div style={{display: "flex"}}><h4>Doc country: </h4><p style={{marginLeft: "10px"}}>{JSON.stringify(verifiedData.verification.documents.country)}</p></div>
-                      <button className="btn btn-primary" onClick={handleGoBack}>Go back</button>
-                    </>
-                  ):<Navigate replace to="/success" />
+                    <Navigate replace to="/success" />
+                  )
                 }
               />
               <Route
@@ -213,8 +251,7 @@ function App() {
                 element={
                   !username ? (
                     <>
-                      <Login signIn={signIn} 
-                      />
+                      <Login signIn={signIn} />
                     </>
                   ) : (
                     <Navigate replace to="/success" />

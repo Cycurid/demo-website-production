@@ -8,7 +8,7 @@ import {
   Link,
   Navigate,
 } from "react-router-dom";
-import { immeOauth, immeLogout } from "cycurid-widget-js";
+import { cycuridConnectInitialize, cycuridConnectLogout } from "cycurid-widget-js";
 import { immeVerification } from "cycurid-verification-js";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
@@ -31,13 +31,13 @@ function App() {
 
   const [verifiedData, setVerifiedData] = useState({});
 
-  useInterval(async () => {
-    const response = await axios.post(
-      `${process.env.REACT_APP_SERVER}/verification/status`,
-      {}
-    );
-    setVerifiedData(response.data);
-  }, 1000 * 5);
+  // useInterval(async () => {
+  //   const response = await axios.post(
+  //     `${process.env.REACT_APP_SERVER2}/verification/status`,
+  //     {}
+  //   );
+  //   setVerifiedData(response.data);
+  // }, 1000 * 5);
 
   useEffect(() => {
     console.log(verifiedData);
@@ -49,7 +49,7 @@ function App() {
 
   let verificationData = [];
   const config = {
-    origin_url: process.env.REACT_APP_ORIGIN_URL,
+    redirect_uri: process.env.REACT_APP_REDIRECT_URI,
     client_secret: process.env.REACT_APP_CLIENT_SECRET,
     client_id: process.env.REACT_APP_CLIENT_ID,
     scope: [
@@ -70,7 +70,7 @@ function App() {
   const myUserData = {
     verification: {
       //callback: "https://e83c-209-121-124-51.ngrok.io",
-      callback: `${process.env.REACT_APP_SERVER}/verification`,
+      callback: `${process.env.REACT_APP_SERVER2}/verification`,
       person: {
         first_name: firstName,
         last_name: lastName,
@@ -105,10 +105,10 @@ function App() {
 
   async function signIn(e) {
     e.preventDefault();
-    immeOauth({ ...config, action: "login" }, onSuccess, onFailure);
+    cycuridConnectInitialize({ ...config, action: "login" }, onSuccess, onFailure);
   }
   async function signUp(e) {
-    immeOauth({ ...config, action: "login" }, onSuccess, onFailure);
+    cycuridConnectInitialize({ ...config, action: "login" }, onSuccess, onFailure);
   }
   async function verify(e) {
     console.log("verificationConfig", verificationConfig);
@@ -117,13 +117,13 @@ function App() {
     console.log("verificationData", verificationData);
   }
   function logout() {
-    immeLogout(token.access_token, config.client_id, config.client_secret);
+    cycuridConnectLogout(token.access_token, config.client_id, config.client_secret);
     setUsername(null);
   }
 
   async function handleGoBack() {
     const response = await axios.post(
-      `${process.env.REACT_APP_SERVER}/verification/reset`,
+      `${process.env.REACT_APP_SERVER2}/verification/reset`,
       {}
     );
     console.log("response is:", response);

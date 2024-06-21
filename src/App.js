@@ -8,7 +8,10 @@ import {
   Link,
   Navigate,
 } from "react-router-dom";
-import { cycuridConnectInitialize, cycuridConnectLogout } from "cycurid-widget-js";
+import {
+  cycuridConnectInitialize,
+  cycuridConnectLogout,
+} from "cycurid-widget-js";
 import { immeVerification } from "cycurid-verification-js";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
@@ -52,18 +55,7 @@ function App() {
     redirect_uri: process.env.REACT_APP_REDIRECT_URI,
     client_secret: process.env.REACT_APP_CLIENT_SECRET,
     client_id: process.env.REACT_APP_CLIENT_ID,
-    scope: [
-      "reference_uuid",
-      "email",
-      "phone",
-      "first_name",
-      "last_name",
-      "middle_name",
-      "dob",
-      "address",
-      "city",
-      "zip",
-    ],
+    scope: ["openid", "profile", "address", "vc"],
     entity_name: "Imme Test Entity",
   };
 
@@ -105,10 +97,18 @@ function App() {
 
   async function signIn(e) {
     e.preventDefault();
-    cycuridConnectInitialize({ ...config, action: "login" }, onSuccess, onFailure);
+    cycuridConnectInitialize(
+      { ...config, action: "login" },
+      onSuccess,
+      onFailure
+    );
   }
   async function signUp(e) {
-    cycuridConnectInitialize({ ...config, action: "login" }, onSuccess, onFailure);
+    cycuridConnectInitialize(
+      { ...config, action: "login" },
+      onSuccess,
+      onFailure
+    );
   }
   async function verify(e) {
     console.log("verificationConfig", verificationConfig);
@@ -117,7 +117,11 @@ function App() {
     console.log("verificationData", verificationData);
   }
   function logout() {
-    cycuridConnectLogout(token.access_token, config.client_id, config.client_secret);
+    cycuridConnectLogout(
+      token.access_token,
+      config.client_id,
+      config.client_secret
+    );
     setUsername(null);
   }
 

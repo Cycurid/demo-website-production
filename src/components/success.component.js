@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import { ReactComponent as Logo } from "../Assets/imme icon-02.svg";
 
 export default class Success extends Component {
- 
   render() {
-    console.log('data Here',this.props.userData );
+    console.log("data Here", this.props.userData);
     return (
       <>
         <h3>Successfully Logged In</h3>
-        {Object.keys(this.props.userData).map((obj, i) => {
+        {Object.keys(this.props.userData.claims).map((obj, i) => {
           return (
-            <h4 className="text-center" style={{ color: 'black'}}>
-              {obj}: {this.props.userData[obj]}
+            <h4 className="text-center" style={{ color: "black" }}>
+              {obj}: {this.props.userData.claims[obj]}
             </h4>
           );
         })}

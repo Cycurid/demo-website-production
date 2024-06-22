@@ -85,8 +85,9 @@ function App() {
   };
 
   function onSuccess(data, token) {
-    setUsername(data.reference_uuid);
-    setUserData(data.user_data);
+    console.log("DATA", data);
+    setUsername("Test");
+    setUserData(data);
     setToken(token);
     console.log("Data requested from scope: ", data);
   }

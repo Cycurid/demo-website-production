@@ -1,8 +1,6 @@
 .App {
-  height: 150vh;
   text-align: center;
   background-color: white;
-  overflow: hidden !important;
 }
 body {
   background: white;
@@ -10,7 +8,6 @@ body {
 
 .container {
   background-color: white;
-  overflow: hidden !important;
 }
 
 .App-logo {

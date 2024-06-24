@@ -167,9 +167,8 @@ function App() {
             )}
           </div>
         </nav>
-
-        <div className="auth-wrapper">
-        
+        <div style={{ marginTop: "80px" }}>
+          <div className="auth-wrapper">
             <Routes>
               <Route
                 exact
@@ -285,7 +284,7 @@ function App() {
               />
             </Routes>
           </div>
-      
+        </div>
       </div>
     </Router>
   );

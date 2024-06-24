@@ -169,7 +169,7 @@ function App() {
         </nav>
 
         <div className="auth-wrapper">
-          <div className="auth-inner">
+        
             <Routes>
               <Route
                 exact
@@ -285,7 +285,7 @@ function App() {
               />
             </Routes>
           </div>
-        </div>
+      
       </div>
     </Router>
   );

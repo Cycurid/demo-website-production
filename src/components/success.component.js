@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ReactComponent as Logo } from "../Assets/imme icon-02.svg";
+import { ReactComponent as Logo } from "../Assets/logo.svg";
 
 export default class Success extends Component {
   render() {
@@ -22,8 +22,8 @@ export default class Success extends Component {
             onClick={this.props.logout()}
           >
             {" "}
-            <Logo style={{ width: "20px", marginRight: "20px" }} />
-            Sign Out With Imme
+            {/* <Logo style={{ width: "20px", marginRight: "20px" }} /> */}
+            Sign Out With CycurID
           </button>
         </div>
       </>

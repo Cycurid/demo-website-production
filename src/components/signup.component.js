@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ReactComponent as Logo } from "../Assets/imme icon-02.svg";
+import { ReactComponent as Logo } from "../Assets/logo.svg";
 
 export default class SignUp extends Component {
   render() {
@@ -53,8 +53,8 @@ export default class SignUp extends Component {
             onClick={this.props.signUp}
           >
             {" "}
-            <Logo style={{ width: "20px", marginRight: "20px" }} />
-            Sign Up With Imme
+            {/* <Logo style={{ width: "20px", marginRight: "20px" }} /> */}
+            Sign Up With CycurID
           </button>
         </div>
         <p className="forgot-password text-right">

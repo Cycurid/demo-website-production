@@ -56,7 +56,7 @@ function App() {
     client_secret: process.env.REACT_APP_CLIENT_SECRET,
     client_id: process.env.REACT_APP_CLIENT_ID,
     scope: ["openid", "profile", "address", "vc"],
-    entity_name: "Imme Test Entity",
+    entity_name: "CycurID Test Entity",
   };
 
   const myUserData = {

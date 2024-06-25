@@ -20,15 +20,28 @@ export default class Success extends Component {
     console.log("flattenedClaims", flattenedClaims);
     return (
       <>
-        <div style={{ padding: "60px" }}>
-          <h3>Successfully Logged In</h3>
-          <div>
+        <div className="container" style={{ padding: "60px" }}>
+          <h3 style={{ marginBottom: "60px" }}>Successfully Logged In</h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr ",
+              gap: "20px",
+            }}
+          >
             {flattenedClaims.map((claim, i) => (
               <div key={i}>
-                <h5 className="text-center" style={{ color: "black" }}>
+                <h5
+                  className="text-left"
+                  style={{
+                    color: "black",
+                    textDecoration: "underline",
+                    textTransform: "capitalize",
+                  }}
+                >
                   {claim.title}
                 </h5>
-                <div style={{ paddingLeft: "20px" }}>
+                <div>
                   {Object.keys(claim.properties).map((prop, j) => (
                     <p className="text-left" style={{ color: "black" }} key={j}>
                       {prop}:{" "}

@@ -9,7 +9,7 @@
     "axios": "^1.2.0",
     "bootstrap": "^5.1.3",
     "cycurid-verification-js": "^1.0.0",
-    "cycurid-widget-js": "^1.0.10",
+    "cycurid-widget-js": "^1.0.11",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",

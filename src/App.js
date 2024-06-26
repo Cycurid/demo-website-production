@@ -117,13 +117,18 @@ function App() {
     immeVerification(verificationConfig, onSuccess, onFailure);
     console.log("verificationData", verificationData);
   }
-  function logout() {
-    cycuridConnectLogout(
-      token.access_token,
-      config.client_id,
-      config.client_secret
-    );
-    setUsername(null);
+  async function logout() {
+    try {
+      const response = await cycuridConnectLogout(
+        token,
+        config.client_id,
+        config.client_secret
+      );
+      console.log("cycuridConnectLogout", response);
+      setUsername(null);
+    } catch (error) {
+      console.error("Failed to log out:", error);
+    }
   }
 
   async function handleGoBack() {
